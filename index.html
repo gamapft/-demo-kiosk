@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--
+  Put this file in the SAME folder as the four demo files.
+  If your filenames differ, edit the href="..." values below to match exactly.
+  Filenames are case-sensitive on GitHub Pages.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kiosk demos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,700;800&family=JetBrains+Mono:wght@400;600&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E4E2DC;
+    --ink:#16181B;
+    --muted:#7E7C75;
+    --edge:#C9C6BE;
+    --signal:#F04E23;
+    --pad:clamp(20px, 5vw, 44px);
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{margin:0;padding:0;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Instrument Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100dvh;
+    padding:var(--pad);
+    padding-top:max(var(--pad), env(safe-area-inset-top));
+    padding-bottom:max(var(--pad), env(safe-area-inset-bottom));
+    display:flex;
+    flex-direction:column;
+    gap:clamp(22px, 5vw, 40px);
+  }
+
+  /* ---- header ---- */
+
+  .bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-family:"JetBrains Mono", ui-monospace, monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    border-bottom:1px solid var(--edge);
+    padding-bottom:10px;
+  }
+
+  .bar strong{color:var(--ink);font-weight:600;}
+
+  h1{
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-variation-settings:"wdth" 78;
+    font-weight:800;
+    font-size:clamp(38px, 13vw, 76px);
+    line-height:0.92;
+    letter-spacing:-0.02em;
+    margin:0;
+    max-width:11ch;
+  }
+
+  h1 em{font-style:normal;color:var(--signal);}
+
+  /* ---- slabs ---- */
+
+  .rack{
+    display:grid;
+    gap:10px;
+    grid-template-columns:1fr;
+  }
+
+  .slab{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    background:var(--ink);
+    color:var(--paper);
+    text-decoration:none;
+    padding:clamp(20px, 5vw, 30px);
+    min-height:112px;
+    overflow:hidden;
+    transition:transform .16s ease, background .16s ease;
+  }
+
+  .slab::before{
+    content:"";
+    position:absolute;
+    inset:0 auto 0 0;
+    width:4px;
+    background:var(--signal);
+    transform:scaleY(0);
+    transform-origin:bottom;
+    transition:transform .2s ease;
+  }
+
+  .slab:hover::before,
+  .slab:focus-visible::before{transform:scaleY(1);}
+
+  .slab:active{transform:scale(.985);background:#000;}
+
+  .slab:focus-visible{outline:3px solid var(--signal);outline-offset:3px;}
+
+  .name{
+    font-family:"Bricolage Grotesque", sans-serif;
+    font-variation-settings:"wdth" 82;
+    font-weight:700;
+    font-size:clamp(22px, 6.2vw, 30px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    display:block;
+  }
+
+  .meta{
+    display:block;
+    margin-top:9px;
+    font-family:"JetBrains Mono", ui-monospace, monospace;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    color:#9C9A93;
+    word-break:break-all;
+  }
+
+  .tag{
+    display:inline-block;
+    margin-bottom:11px;
+    font-family:"JetBrains Mono", ui-monospace, monospace;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--signal);
+  }
+
+  .arrow{
+    flex:none;
+    width:26px;
+    height:26px;
+    stroke:var(--paper);
+    stroke-width:2.2;
+    fill:none;
+  }
+
+  /* ---- footer ---- */
+
+  footer{
+    margin-top:auto;
+    font-family:"JetBrains Mono", ui-monospace, monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+
+  @media (min-width:760px){
+    .rack{grid-template-columns:1fr 1fr;}
+    .slab{min-height:170px;align-items:flex-end;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="bar">
+    <span>kiosk<strong>-demos</strong></span>
+    <span>4 screens</span>
+  </div>
+
+  <h1>Pick a <em>screen</em>.</h1>
+
+  <nav class="rack">
+
+    <a class="slab" href="burger-king-demo.html">
+      <span>
+        <span class="tag">Standard</span>
+        <span class="name">Burger King</span>
+        <span class="meta">burger-king-demo.html · 1.6 MB</span>
+      </span>
+      <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="slab" href="burger-king-left-demo.html">
+      <span>
+        <span class="tag">Left-hand layout</span>
+        <span class="name">Burger King</span>
+        <span class="meta">burger-king-left-demo.html · 1.6 MB</span>
+      </span>
+      <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="slab" href="popeyes-demo.html">
+      <span>
+        <span class="tag">Standard</span>
+        <span class="name">Popeyes</span>
+        <span class="meta">popeyes-demo.html · 2 MB</span>
+      </span>
+      <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="slab" href="sesam-demo.html">
+      <span>
+        <span class="tag">Standard</span>
+        <span class="name">Sesam</span>
+        <span class="meta">sesam-demo.html · 1.6 MB</span>
+      </span>
+      <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+  </nav>
+
+  <footer>Tap a demo to open it full screen</footer>
+
+</body>
+</html>
